@@ -1,0 +1,197 @@
+<!--
+Simple single-file affiliate landing page.
+How to use:
+1. Open this file in a text editor and replace the placeholder links (YOUR_AFFILIATE_LINK_HERE) with your Amazon affiliate short links.
+2. Replace site title and social links as needed.
+3. To publish: push to GitHub and enable GitHub Pages, or upload to any static host. Works on mobile.
+
+File: index.html
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tarun's Deals — Best Amazon Finds</title>
+  <meta name="description" content="Daily budget-friendly Amazon deals handpicked for you. Click and save!" />
+  <style>
+    :root{--accent:#0ea5b7;--bg:#0f172a;--card:#0b1220;--muted:#94a3b8}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;background:linear-gradient(180deg,#071024 0%, #061026 100%);color:#e6eef6}
+    .container{max-width:980px;margin:28px auto;padding:20px}
+    header{display:flex;align-items:center;gap:16px}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#06b6d4);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;color:#042029}
+    h1{margin:0;font-size:20px}
+    p.lead{margin:6px 0 18px;color:var(--muted)}
+    .hero{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+    .card{background:rgba(255,255,255,0.02);padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
+    .product{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:10px;display:flex;flex-direction:column;gap:8px}
+    .product img{width:100%;height:140px;object-fit:cover;border-radius:8px;background:#062033}
+    .product h3{margin:0;font-size:16px}
+    .price{font-weight:700}
+    .btn{display:inline-block;padding:10px 12px;border-radius:10px;text-decoration:none;font-weight:600;background:var(--accent);color:#042029}
+    .small{font-size:13px;color:var(--muted)}
+    footer{margin-top:20px;color:var(--muted);font-size:13px}
+    .controls{display:flex;gap:8px;flex-wrap:wrap}
+    .copy{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px;border-radius:8px;color:var(--muted);cursor:pointer}
+    .hide-mobile{display:block}
+    @media(max-width:640px){.hero{grid-template-columns:1fr;}.hide-mobile{display:none}}
+    .badge{display:inline-block;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.03);font-size:12px}
+    .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+    .search{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div style="display:flex;gap:12px;align-items:center">
+        <div class="logo">TD</div>
+        <div>
+          <h1>Tarun's Deals</h1>
+          <p class="small">Handpicked Amazon deals — save time, save money.</p>
+        </div>
+      </div>
+      <div class="hide-mobile">
+        <a class="badge" href="#how">How it works</a>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="card">
+        <p class="lead">Daily updated affordable picks from Amazon. Click a product, buy — and I earn a small commission at no extra cost to you. Support the page if you like the picks!</p>
+        <div style="display:flex;gap:10px;align-items:center">
+          <input id="search" class="search" placeholder="Search product title..." oninput="renderProducts()" />
+          <button class="copy" onclick="openAll()">Open all links</button>
+        </div>
+
+        <div class="products" id="products"></div>
+
+      </div>
+
+      <aside style="width:320px">
+        <div class="card">
+          <h3 style="margin-top:0">Quick Tips</h3>
+          <ul class="small">
+            <li>Replace the placeholder links with your Amazon affiliate short links.</li>
+            <li>Share this page URL in your Instagram bio / WhatsApp / Telegram.</li>
+            <li>Use attractive images and short captions when sharing.</li>
+          </ul>
+          <hr style="margin:12px 0;border:0;border-top:1px solid rgba(255,255,255,0.03)" />
+          <div class="small">Hosting:</div>
+          <ol class="small">
+            <li>Push this file to GitHub &amp; enable GitHub Pages.</li>
+            <li>Or upload to Netlify / Vercel as a static site.</li>
+          </ol>
+          <div style="margin-top:10px;display:flex;gap:8px">
+            <a class="btn" id="shareBtn" href="#" onclick="sharePage()">Share</a>
+            <button class="copy" onclick="editExample()">Edit sample items</button>
+          </div>
+        </div>
+
+        <div style="height:14px"></div>
+
+        <div class="card">
+          <h4 style="margin:0">Contact / Social</h4>
+          <p class="small">Instagram: <a href="https://www.instagram.com/yourinsta" target="_blank" style="color:var(--accent)">@yourinsta</a></p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="how" style="margin-top:14px">
+      <div class="card">
+        <h3>How it works</h3>
+        <p class="small">This page lists products with your Amazon affiliate links. When visitors click and buy, you'll earn a commission. Keep product prices under ₹2000 for faster conversions.</p>
+      </div>
+    </section>
+
+    <footer>
+      <div class="small">Made with ⚡ by Tarun — replace this text with your info. Do not forget to replace affiliate links in the source.</div>
+    </footer>
+  </div>
+
+  <script>
+    // --- SAMPLE PRODUCTS ---
+    // Replace the URLs with your Amazon affiliate short links.
+    const SAMPLE = [
+      {
+        id:1,
+        title: 'Boat Earphones (Budget Pick)',
+        price: '₹299',
+        img: 'https://images.unsplash.com/photo-1518444029709-6c2fb2e2e3a6?auto=format&fit=crop&w=800&q=60',
+        link: 'YOUR_AFFILIATE_LINK_HERE'
+      },
+      {
+        id:2,
+        title: 'LED Strip Light (Room vibe)',
+        price: '₹499',
+        img: 'https://images.unsplash.com/photo-1505682634904-d7cdb25d7a4a?auto=format&fit=crop&w=800&q=60',
+        link: 'YOUR_AFFILIATE_LINK_HERE'
+      },
+      {
+        id:3,
+        title: 'Phone Stand & Holder',
+        price: '₹199',
+        img: 'https://images.unsplash.com/photo-1585386959984-a4155227c6f9?auto=format&fit=crop&w=800&q=60',
+        link: 'YOUR_AFFILIATE_LINK_HERE'
+      }
+    ];
+
+    function renderProducts(){
+      const q = document.getElementById('search').value.toLowerCase();
+      const el = document.getElementById('products');
+      el.innerHTML = '';
+      const list = SAMPLE.filter(p=>p.title.toLowerCase().includes(q));
+      if(list.length===0){el.innerHTML = '<div style="padding:8px;color:var(--muted)">No products found — click "Edit sample items" to add your own.</div>';return}
+      list.forEach(p=>{
+        const node = document.createElement('div'); node.className='product';
+        node.innerHTML = `
+          <img src="${p.img}" alt="${p.title}" />
+          <h3>${p.title}</h3>
+          <div class="small">Price: <span class="price">${p.price}</span></div>
+          <div style="display:flex;gap:8px;margin-top:8px;align-items:center">
+            <a class="btn" href="#" onclick="openLink('${p.link}')">Buy on Amazon</a>
+            <button class="copy" onclick="copyLink('${p.link}')">Copy link</button>
+          </div>
+        `;
+        el.appendChild(node);
+      })
+    }
+
+    function openLink(u){
+      if(!u || u.includes('YOUR_AFFILIATE_LINK_HERE')){alert('Replace the placeholder link with your affiliate link in the source.');return}
+      window.open(u, '_blank');
+    }
+
+    function copyLink(u){
+      if(!u || u.includes('YOUR_AFFILIATE_LINK_HERE')){alert('Replace the placeholder link with your affiliate link in the source.');return}
+      navigator.clipboard.writeText(u).then(()=>{alert('Link copied to clipboard')});
+    }
+
+    function openAll(){
+      const ok = confirm('Open all product links in new tabs?');
+      if(!ok) return;
+      SAMPLE.forEach(p=>{ if(p.link && !p.link.includes('YOUR_AFFILIATE_LINK_HERE')) window.open(p.link,'_blank') });
+    }
+
+    function sharePage(){
+      const url = location.href;
+      if(navigator.share){navigator.share({title:document.title,text:'Check these deals',url})}
+      else{prompt('Copy this link to share', url)}
+    }
+
+    function editExample(){
+      const t = prompt('Add a new item in the format: title|price|imageURL|affiliateLink');
+      if(!t) return;
+      const parts = t.split('|');
+      if(parts.length<4){alert('Invalid format — use title|price|imageURL|affiliateLink');return}
+      SAMPLE.push({id:Date.now(),title:parts[0],price:parts[1],img:parts[2],link:parts[3]});
+      renderProducts();
+    }
+
+    // initial render
+    renderProducts();
+  </script>
+</body>
+</html>
